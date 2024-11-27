@@ -29,13 +29,10 @@ const fetch_api = async (apiUrl, bodyContent, actionType) => {
     if (response.status === 200) {
       return response.data;
     } else {
-      throw handleErrorResponse(response);
     }
   } catch (err) {
     // Server connection error or unexpected errors
-    let ex = new SMXException();
-    ex.Type = actionType === "POST" ? 1 : 2;
-    ex.Message = "Kết nối máy chủ thất bại, vui lòng thử lại sau.";
-    throw ex;
+
+    throw err;
   }
 };
